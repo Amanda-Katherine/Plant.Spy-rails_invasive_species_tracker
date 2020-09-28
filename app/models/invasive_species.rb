@@ -1,0 +1,2 @@
+class InvasiveSpecies < ApplicationRecord
+end

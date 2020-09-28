@@ -1,0 +1,2 @@
+class InvasiveSpeciesController < ApplicationController
+end
