@@ -43,4 +43,10 @@ class PostsController < ApplicationController
             @post.destroy
         #end 
     end
+
+    private 
+
+    def post_params
+        params.require(:post).permit(:species_name, :description, )
+    end
 end
