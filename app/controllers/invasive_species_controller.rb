@@ -42,5 +42,9 @@ class InvasiveSpeciesController < ApplicationController
         @invasive_species.destroy
     end
 
-    
+    private
+
+    def species_params
+        params.require(:invasive_species).permit(:common_name, :photo, :description, :environment)
+    end
 end
