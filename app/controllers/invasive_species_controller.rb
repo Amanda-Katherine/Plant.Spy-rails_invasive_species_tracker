@@ -1,6 +1,7 @@
 class InvasiveSpeciesController < ApplicationController
-
-    def index
+    
+    def
+         index
         @all_species = InvasiveSpecies.all
     end
     
