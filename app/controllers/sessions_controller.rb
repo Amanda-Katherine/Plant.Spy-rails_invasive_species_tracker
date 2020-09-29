@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
     end
 
     def create
-        binding.pry
         @user = User.find_by(username: params[:user][:username])
         if @user.valid? #vs .authenticate
             session[:user_id] = @user.id #check params
