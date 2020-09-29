@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     def create
         @user = User.find_by(username: params[:user][:username])
         binding.pry
-        if @user.valid? #vs .authenticate
+        if @user.authenticate(params[:user][:password])
             session[:user_id] = @user.id #check params
             redirect_to user_path(@user)
         else
