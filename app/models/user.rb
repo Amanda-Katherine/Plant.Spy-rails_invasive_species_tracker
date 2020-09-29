@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
     validates :name, :username, :about_me, :password, :location, presence: true, on: :create
     validates :username, :password, presence: true#, on: login 
+    validates :username, uniqueness: true 
     has_secure_password
 end
 

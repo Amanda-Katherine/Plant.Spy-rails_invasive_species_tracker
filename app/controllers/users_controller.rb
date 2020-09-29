@@ -8,15 +8,16 @@ class UsersController < ApplicationController
   end
 
   def create
+    user = User.new(user_params)
     binding.pry
-    @user = User.new(user_params)
 
-    if @user.save
-      #start session
-      #redirect to user path OR redirect to species path (need to decide)
+    if user.save
+      session[:user_id] = user.id
+      redirect_to invasive_species_path
     else
       render :new
-      #render error message? 
+      # flash[:message] = "Invalid Credentials"     #this isn't descriptive enough
+      @errors = @user.errors.full_messages
     end
   end
 
