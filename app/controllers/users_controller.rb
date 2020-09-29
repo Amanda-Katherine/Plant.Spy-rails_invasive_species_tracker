@@ -15,9 +15,8 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect_to invasive_species_path
     else
+      @errors = user.errors.full_messages
       render :new
-      # flash[:message] = "Invalid Credentials"     #this isn't descriptive enough
-      @errors = @user.errors.full_messages
     end
   end
 
