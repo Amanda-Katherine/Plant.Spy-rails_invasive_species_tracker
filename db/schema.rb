@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_28_182505) do
+ActiveRecord::Schema.define(version: 2020_09_29_224036) do
 
   create_table "invasive_species", force: :cascade do |t|
     t.string "common_name"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2020_09_28_182505) do
     t.boolean "admin", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "email"
   end
 
 end
