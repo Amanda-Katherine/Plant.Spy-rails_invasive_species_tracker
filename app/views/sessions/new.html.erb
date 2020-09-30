@@ -10,6 +10,8 @@
     <%= f.submit "Login "%>
 <% end %>
 
-<%= button_to "Login with Facebook", '/auth/facebook'%>
-<%= button_to "Login with Github", '/auth/github'%>
-<%= button_to "Login with Google", '/auth/google'%>
+<span class="form-inline">
+    <span><%= button_to "Login with Facebook", '/auth/facebook', class: "btn btn-primary"%></span>
+    <%= button_to "Login with Github", '/auth/github'%>
+    <%= button_to "Login with Google", '/auth/google'%>
+</span>
