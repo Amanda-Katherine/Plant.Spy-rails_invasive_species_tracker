@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     end
 
     def create
-        if auth_hash
+        if auth
             login_via_omniauth
         else
             login_via_account
@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     end
 
     def login_via_account
-        @user = User.find_by(username: params[:user][:username])
+        @user = User.create_or_find_by(username: params[:user][:username])
         if @user && @user.authenticate(params[:user][:password])
             session[:user_id] = @user.id #check params
             redirect_to user_path(@user)
@@ -22,16 +22,15 @@ class SessionsController < ApplicationController
         end
     end
 
-    def auth_hash
+    def auth
         request.env["omniauth.auth"]
     end
 
     def login_via_omniauth
-        binding.pry
-        user = User.find_or_create_by(email: auth_hash[:info][:email])
+        user = User.find_or_create_by(email: auth[:info][:email])
         if user
+            user.password = SecureRandom.hex
             session[:user_id] = user.id 
-        #   flash[:success] = "Login Successful"  #do I want this? 
             redirect_to invasive_species_path
         else 
             flash[:error] = user.errors.full_messages
