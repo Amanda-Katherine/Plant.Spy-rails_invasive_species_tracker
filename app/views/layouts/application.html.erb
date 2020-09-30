@@ -37,7 +37,6 @@
               <a class="nav-link" href="/login">Login</a>
             </li>
             <li class="nav-item">
-              <%# <a class="nav-link" href="/logout" method="post">Logout</a> %>
               <%= link_to "Logout", logout_path, method: :post, class: "nav-link" %>
             </li>
 
@@ -46,7 +45,7 @@
                 Create New
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/species/new">New Species</a>
+                <a class="dropdown-item" href="/invasive_species/new">New Species</a>
                 <a class="dropdown-item" href="/posts/new">New Post</a>
                 <%# <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Something else here</a> %>
