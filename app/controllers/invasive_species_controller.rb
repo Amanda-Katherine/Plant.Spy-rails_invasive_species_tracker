@@ -4,8 +4,9 @@ class InvasiveSpeciesController < ApplicationController
         @all_species = InvasiveSpecies.all
     end
     
-    # def new
-    # end
+    def new
+        @invasive_species = InvasiveSpecies.new
+    end
 
     def create
     new_species = InvasiveSpecies.new(species_params)
@@ -18,6 +19,7 @@ class InvasiveSpeciesController < ApplicationController
     end
 
     def show
+        binding.pry
         @invasive_species = InvasiveSpecies.find_by(id: params[:id])
     end
 
