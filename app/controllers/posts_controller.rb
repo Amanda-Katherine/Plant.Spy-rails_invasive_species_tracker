@@ -4,8 +4,8 @@ class PostsController < ApplicationController
         @posts = Post.all
     end
 
-    # def new
-    # end
+    def new
+    end
 
     def create
         @post = Post.new(post_params)
@@ -38,7 +38,7 @@ class PostsController < ApplicationController
     end
 
     def destroy
-        @post = Post.find_by(id: #id params)
+        @post = Post.find_by(id: params[:id])
         #if authenticate current user is post creator
             @post.destroy
         #end 
