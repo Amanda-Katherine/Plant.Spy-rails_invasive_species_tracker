@@ -28,14 +28,12 @@ class PostsController < ApplicationController
     def create
         @post = Post.new(post_params)
         @post.user = current_user
-        binding.pry
         if @post.invasive_species[:description] == nil
             @post.invasive_species[:description] = @post.description
             @post.invasive_species.save
         end
         
         if @post.save
-            # redirect to post page
             redirect_to post_path(@post)
         else
             #error 
