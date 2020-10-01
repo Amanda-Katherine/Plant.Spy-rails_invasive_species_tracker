@@ -7,6 +7,7 @@
             <% else %>
                 <%= i.label " for: "%>
                 <%= i.label(:common_name, "#{@invasive_species.common_name}") %>
+                <%= i.hidden_field :common_name %>
             <% end %>
         <% end %><br>
     
