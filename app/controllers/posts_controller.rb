@@ -5,6 +5,14 @@ class PostsController < ApplicationController
     end
 
     def new
+        binding.pry
+        if params[:invasive_species_id]
+            @invasive_species = InvasiveSpecies.find_by(id: params[:invasive_species_id])
+            @post = @invasive_species.posts.build
+        else 
+            @post = Post.new
+            @post.build_invasive_species
+        end
     end
 
     def create
