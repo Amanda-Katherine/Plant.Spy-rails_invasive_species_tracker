@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   root 'welcome#home'
   
   resources :posts
-  resources :invasive_species
+  resources :invasive_species do
+    resources :posts
+  end
+
   resources :users
 
   get '/signup', to: 'users#new'
