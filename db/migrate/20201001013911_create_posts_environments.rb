@@ -1,6 +1,6 @@
-class CreatePostEnvironments < ActiveRecord::Migration[6.0]
+class CreatePostsEnvironments < ActiveRecord::Migration[6.0]
   def change
-    create_table :post_environments do |t|
+    create_table :posts_environments do |t|
       t.integer :post_id
       t.integer :environment_id
 

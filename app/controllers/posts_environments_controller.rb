@@ -1,0 +1,2 @@
+class PostsEnvironmentsController < ApplicationController
+end

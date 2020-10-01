@@ -1,0 +1,2 @@
+class PostsEnvironment < ApplicationRecord
+end

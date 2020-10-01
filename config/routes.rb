@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :post_environments
+  resources :posts_environments
   root 'welcome#home'
   
   resources :posts
