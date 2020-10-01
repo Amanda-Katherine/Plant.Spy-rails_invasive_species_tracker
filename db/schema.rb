@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_01_011133) do
+ActiveRecord::Schema.define(version: 2020_10_01_031528) do
 
   create_table "environments", force: :cascade do |t|
     t.string "name"
@@ -24,14 +24,22 @@ ActiveRecord::Schema.define(version: 2020_10_01_011133) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "environment_id"
   end
 
-  create_table "post_environments", force: :cascade do |t|
+  create_table "my_posts_environments", force: :cascade do |t|
     t.integer "post_id"
     t.integer "environment_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "post_environments", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "environment_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["environment_id"], name: "index_post_environments_on_environment_id"
+    t.index ["post_id"], name: "index_post_environments_on_post_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -58,4 +66,6 @@ ActiveRecord::Schema.define(version: 2020_10_01_011133) do
     t.string "email"
   end
 
+  add_foreign_key "post_environments", "environments"
+  add_foreign_key "post_environments", "posts"
 end
