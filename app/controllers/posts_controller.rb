@@ -47,6 +47,6 @@ class PostsController < ApplicationController
     private 
 
     def post_params
-        params.require(:post).permit(:species_name, :description, :location_latitude, :location_longitude, :photo, :invasive_species_id, :user_id)
+        params.require(:post).permit(:species_name, :description, :location_latitude, :location_longitude, :photo, :user_id, invasive_species_attributes: [:common_name, :photo, :description])
     end
 end
