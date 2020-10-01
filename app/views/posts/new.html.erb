@@ -1,4 +1,4 @@
-<%= form_with(model: @post, url: form_url_helper(@invasive_species)) do |f| %>
+<%= form_with(model: @post, url: post_form_url_helper(@invasive_species)) do |f| %>
     <% if !@invasive_species %>
         <%= f.label :invasive_species %><br>
         <%= f.fields_for :invasive_species do |i| %>

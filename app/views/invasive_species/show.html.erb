@@ -2,6 +2,9 @@
     <h1><%= @invasive_species.common_name %></h1>
     <h4><%= @invasive_species.description %></h4>
 </div><br>
+
+<%= render 'posts/index' %>
+
 <div>
     <% @posts.each do |s| %>
       <div>
@@ -19,5 +22,4 @@
       </div><br>
     <% end %>
 </div>
-
 

@@ -1,13 +1,23 @@
 class PostsController < ApplicationController
 
     def index
-        @posts = Post.all
+        if params[:invasive_specy_id]
+            inv_species = InvasiveSpecies.find_by(id: params[:invasive_specy_id])
+            @posts = inv_species.posts
+            if @posts != []
+                @posts
+            else
+                #insert error about no posts created yet
+                redirect_to invasive_specy_path(inv_species)
+            end
+        else 
+            @posts = Post.all
+        end
     end
 
     def new
-        binding.pry
-        if params[:invasive_species_id]
-            @invasive_species = InvasiveSpecies.find_by(id: params[:invasive_species_id])
+        if params[:invasive_specy_id]
+            @invasive_species = InvasiveSpecies.find_by(id: params[:invasive_specy_id])
             @post = @invasive_species.posts.build
         else 
             @post = Post.new
@@ -19,6 +29,11 @@ class PostsController < ApplicationController
         @post = Post.new(post_params)
         @post.user = current_user
         binding.pry
+        if @post.invasive_species[:description] == nil
+            @post.invasive_species[:description] = @post.description
+            @post.invasive_species.save
+        end
+        
         if @post.save
             # redirect to post page
             redirect_to post_path(@post)

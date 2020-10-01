@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   
   resources :posts
   resources :invasive_species do
-    resources :posts
+    resources :posts, except: :index
   end
 
   resources :users

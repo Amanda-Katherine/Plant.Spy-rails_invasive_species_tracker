@@ -1,7 +1,4 @@
-//start bootstrap code
-import 'bootstrap'
-import './src/application.scss'
-//end bootstrap code
+
 
 // This file is automatically compiled by Webpack, along with any other files
 // present in this directory. You're encouraged to place your actual application logic in
@@ -20,3 +17,8 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+//start bootstrap code
+import 'bootstrap'
+import './src/application.scss'  //it's possible I need to delete this line
+//end bootstrap code
