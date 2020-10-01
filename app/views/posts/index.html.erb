@@ -1,0 +1,9 @@
+<% @posts.each do |p| %>
+    <span>
+    <%= p.invasive_species.common_name %><br>
+    <%= p.description %><br>
+    <%= p.location_latitude %>
+    <%= p.location_longitude %>
+    <%# insert photo here  %>
+    </span><br><br>
+<% end %>
