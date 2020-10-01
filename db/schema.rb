@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_01_000127) do
+ActiveRecord::Schema.define(version: 2020_10_01_001246) do
 
   create_table "environments", force: :cascade do |t|
     t.string "name"
@@ -22,9 +22,9 @@ ActiveRecord::Schema.define(version: 2020_10_01_000127) do
     t.string "common_name"
     t.string "photo"
     t.string "description"
-    t.string "environment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "environment_id"
   end
 
   create_table "posts", force: :cascade do |t|
