@@ -6,6 +6,7 @@ class InvasiveSpeciesController < ApplicationController
     
     def new
         @invasive_species = InvasiveSpecies.new
+        binding.pry
     end
 
     def create

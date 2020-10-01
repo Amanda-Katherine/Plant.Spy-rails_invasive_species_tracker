@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2020_10_01_031528) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string "species_name"
+    # t.string "species_name"
     t.string "description"
     t.string "location_latitude"
     t.string "location_longitude"

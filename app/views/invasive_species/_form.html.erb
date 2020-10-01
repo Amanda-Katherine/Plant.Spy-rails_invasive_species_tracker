@@ -2,8 +2,10 @@
     <%= f.label :common_name %>
     <%= f.text_field :common_name %>
 
-    <%= f.label "Defining Characteristics: growth pattern, origin history, environment preference, range, etc" %>
+    <%= f.label "Defining Characteristics of this Species: growth pattern, origin history, environment preference, range, etc" %>
     <%= f.text_area :description %>
+
+    #how to add optional create new post to this as well? 
 
     <%= f.submit %>
 <% end %>

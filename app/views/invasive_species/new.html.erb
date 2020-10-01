@@ -1,17 +1,2 @@
-<div class="container">
-    <%=form_with(model: @invasive_species, url: invasive_species_path, class: "") do |f|%>
-        <%= f.label :common_name %>
-        <%= f.text_field :common_name %>
+<%= render 'form' %>
 
-        <%= f.label :photo %>
-        <p>Upload photo capability here</p>
-
-        <%= f.label :description %>
-        <%= f.text_area :description %>
-
-        <%= f.label :environment %>
-        <%= f.collection_check_boxes :environment_ids, @environments, :id, :name %>
-
-        <%= f.submit %>
-    <% end %>
-</div>    

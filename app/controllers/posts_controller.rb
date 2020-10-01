@@ -5,6 +5,7 @@ class PostsController < ApplicationController
     end
 
     def new
+        binding.pry
         if params[:invasive_species_id]
             @invasive_species = InvasiveSpecies.find_by(id: params[:invasive_species_id])
             @post = @invasive_species.posts.build
@@ -19,15 +20,16 @@ class PostsController < ApplicationController
 
         if @post.save
             # redirect to post page
+            redirect_to post_path(@post)
         else
             #error 
             render :new
         end
     end
 
-    # def show
-    #     @post = Post.find_by(id: #params id)
-    # end
+    def show
+        @post = Post.find_by(id: params[:id])
+    end
 
     # def edit
     #     @post = Post.find_by(id: #params)
@@ -54,6 +56,6 @@ class PostsController < ApplicationController
     private 
 
     def post_params
-        params.require(:post).permit(:species_name, :description, :location_latitude, :location_longitude, :photo, :user_id, invasive_species_attributes: [:common_name, :photo, :description])
+        params.require(:post).permit(:description, :location_latitude, :location_longitude, :photo, :user_id, invasive_species_attributes: [:common_name, :photo, :description])
     end
 end
