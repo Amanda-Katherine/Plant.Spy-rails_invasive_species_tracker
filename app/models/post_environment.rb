@@ -1,0 +1,2 @@
+class PostEnvironment < ApplicationRecord
+end

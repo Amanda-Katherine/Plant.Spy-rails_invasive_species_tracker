@@ -1,0 +1,2 @@
+class PostEnvironmentsController < ApplicationController
+end

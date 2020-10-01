@@ -4,7 +4,6 @@ class CreateInvasiveSpecies < ActiveRecord::Migration[6.0]
       t.string :common_name
       t.string :photo
       t.string :description
-      t.string :environment
 
       t.timestamps
     end
