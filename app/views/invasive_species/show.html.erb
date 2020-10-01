@@ -1,0 +1,23 @@
+<div>
+    <h1><%= @invasive_species.common_name %></h1>
+    <h4><%= @invasive_species.description %></h4>
+</div><br>
+<div>
+    <% @posts.each do |s| %>
+      <div>
+        <%= s.description %><br>
+        <%= s.location_latitude %>
+        <%= s.location_longitude %><br>
+
+        <% if s.updated_at != s.created_at %>
+            <span>Post updated at</span>
+            <%= s.updated_at %>
+        <% else %>
+            <span>Post created at</span>
+            <%= s.created_at %>
+        <% end %>
+      </div><br>
+    <% end %>
+</div>
+
+

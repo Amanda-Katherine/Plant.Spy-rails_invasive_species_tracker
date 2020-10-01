@@ -21,6 +21,7 @@ class InvasiveSpeciesController < ApplicationController
     def show
         # binding.pry
         @invasive_species = InvasiveSpecies.find_by(id: params[:id])
+        @posts = @invasive_species.posts
     end
 
     # def edit
