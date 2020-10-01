@@ -1,21 +1,23 @@
-<%= form_with(model: @post, url: invasive_specy_post_path(@invasive_species)) do |f| %>
-    <%= f.label : %>
-    <%= f.text_field : %><br>
-
-    <%= f.label : %>
-    <%= f.text_field : %><br>
+<%= form_with(model: @post, url: form_url_helper(@invasive_species)) do |f| %>
+    <% if !@invasive_species %>
+        <%= f.label :invasive_species %><br>
+        <%= f.fields_for :invasive_species do |i| %>
+            <%= i.label :common_name %>
+            <%= i.text_field :common_name %>
+        <% end %><br>
+    <% end %>
     
-    <%= f.label : %>
-    <%= f.text_area : %><br>
+    <%= f.label :description %>
+    <%= f.text_area :description %><br>
 
-    <%= f.label : %>
-    <%= f.text_field : %><br>
+    <%= f.label :location_latitude %>
+    <%= f.text_field :location_latitude %><br>
+    
+    <%= f.label :location_longitude %>
+    <%= f.text_field :location_longitude %><br>
 
-    <%= f.label : %>
-    <%= f.password_field : %><br>
-
-    <%= f.label : %>
-    <%= f.password_field : %><br>
+    <%= f.label :photo %>
+    <%= f.text_field :photo %><br>
 
     <%= f.submit %>
 <% end %>
