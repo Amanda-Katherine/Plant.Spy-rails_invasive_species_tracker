@@ -1,4 +1,5 @@
 class InvasiveSpeciesController < ApplicationController
+    before_action :require_login
     
     def index
         @all_species = InvasiveSpecies.all
