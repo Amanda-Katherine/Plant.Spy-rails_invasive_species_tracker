@@ -19,7 +19,7 @@ class PostsController < ApplicationController
     def new
         if params[:invasive_specy_id]
             @invasive_species = InvasiveSpecies.find_by(id: params[:invasive_specy_id])
-            @post = @invasive_species.posts.build(user: current_user)
+            @post = @invasive_species.posts.build
         else 
             @post = Post.new
             @post.build_invasive_species
@@ -27,6 +27,8 @@ class PostsController < ApplicationController
     end
 
     def create
+        #take out instance variables? See errors on line 42
+        #is Post.new okay since I'm calling .save below?
         @post = Post.new(post_params)
         @post.user = current_user
         if @post.invasive_species[:description] == nil
@@ -46,26 +48,29 @@ class PostsController < ApplicationController
         @post = Post.find_by(id: params[:id])
     end
 
-    # def edit
-    #     @post = Post.find_by(id: #params)
-    # end
+    def edit
+        @post = Post.find_by(id: params[:id])
+    end
 
     def update
         @post = Post.find_by(id: params[:id])
 
-        if @post.update
-            #redirect to post path
+        if @post.update(post_params)
+            redirect_to invasive_specy_path(@post.invasive_species)
         else
-            #errors
+            flash[:failure] = @post.errors.full_messages
             render :edit
         end
     end
 
     def destroy
         @post = Post.find_by(id: params[:id])
-        #if authenticate current user is post creator
+        if @post.user == current_user 
             @post.destroy
-        #end 
+        else
+            flash[:failure] = "Sorry, you do not have permission to edit this post"
+        end
+        redirect_to invasive_species_path
     end
 
     private 
