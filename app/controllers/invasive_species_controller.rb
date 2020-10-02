@@ -9,17 +9,21 @@ class InvasiveSpeciesController < ApplicationController
     end
 
     def create
-    new_species = InvasiveSpecies.new(species_params)
-        if new_species.save
+        binding.pry
+        if new_species = InvasiveSpecies.find_by(common_name: species_params[:common_name])
+            flash[:failure] = "That species already exists. Please feel free to add a post to it about what you found!"
             redirect_to invasive_specy_path(new_species)
-        else
-            @errors = new_species.errors.full_messages
-            render :new
+        else new_species = InvasiveSpecies.create(common_name: species_params[:common_name], description: species_params[:description])
+            if new_species.save
+                redirect_to invasive_specy_path(new_species)
+            else
+                flash[:failure] = new_species.errors.full_messages
+                render :new
+            end
         end
     end
 
     def show
-        # binding.pry
         @invasive_species = InvasiveSpecies.find_by(id: params[:id])
         @posts = @invasive_species.posts
     end

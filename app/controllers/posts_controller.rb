@@ -32,7 +32,6 @@ class PostsController < ApplicationController
             @post.invasive_species[:description] = @post.description
             @post.invasive_species.save
         end
-        binding.pry
         
         if @post.save
           if params[:post][:invasive_species_attributes][:id].present?
@@ -41,7 +40,8 @@ class PostsController < ApplicationController
             redirect_to post_path(@post)
           end
         else
-            #error 
+            binding.pry
+            flash[:failure] = @post.errors.full_messages
             render :new
         end
     end

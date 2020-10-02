@@ -4,11 +4,13 @@ class Post < ApplicationRecord
     belongs_to :invasive_species
     belongs_to :user
 
+    validates :description, :location_latitude, :location_longitude, :user_id, :invasive_species_id, presence: true
+    validates :common_name, uniqueness: true
+
     # accepts_nested_attributes_for :invasive_species
 
     #insert custom nested form for invasive species? 
     def invasive_species_attributes=(inv_spec_atts)
-        binding.pry
         inv_spec = InvasiveSpecies.find_or_create_by(common_name: inv_spec_atts[:common_name])
 
         if inv_spec[:id].present?
