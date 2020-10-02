@@ -28,7 +28,6 @@ class SessionsController < ApplicationController
     end
     
     def login_via_omniauth
-        binding.pry
         user = User.find_or_create_by(username: auth[:info][:email]) do |u|
             if auth[:provider] == "github"
                 u.username = auth[:info][:nickname]

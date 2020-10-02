@@ -19,7 +19,7 @@ class PostsController < ApplicationController
     def new
         if params[:invasive_specy_id]
             @invasive_species = InvasiveSpecies.find_by(id: params[:invasive_specy_id])
-            @post = @invasive_species.posts.build
+            @post = @invasive_species.posts.build(user: current_user)
         else 
             @post = Post.new
             @post.build_invasive_species
@@ -35,11 +35,7 @@ class PostsController < ApplicationController
         end
         
         if @post.save
-          if params[:post][:invasive_species_attributes][:id].present?
             redirect_to invasive_specy_path(@post.invasive_species)
-          else
-            redirect_to post_path(@post)
-          end
         else
             flash[:failure] = @post.errors.full_messages
             render :new
