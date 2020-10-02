@@ -41,7 +41,6 @@ class PostsController < ApplicationController
             redirect_to post_path(@post)
           end
         else
-            binding.pry
             flash[:failure] = @post.errors.full_messages
             render :new
         end

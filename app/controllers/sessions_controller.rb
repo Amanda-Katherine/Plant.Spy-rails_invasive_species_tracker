@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
     before_action :redirect_if_logged_in, except: [:destroy]
-    
+
     def new
     end
 
@@ -22,15 +22,22 @@ class SessionsController < ApplicationController
             render :new
         end
     end
-
+    
     def auth
         request.env["omniauth.auth"]
     end
-
+    
     def login_via_omniauth
-        user = User.find_or_create_by(email: auth[:info][:email])
-        if user
-            user.password = SecureRandom.hex
+        binding.pry
+        user = User.find_or_create_by(username: auth[:info][:email]) do |u|
+            if auth[:provider] == "github"
+                u.username = auth[:info][:nickname]
+            end
+            u.name = "Unknown - Onmiauth Login"
+            u.password = SecureRandom.hex
+        end
+
+        if user.save
             session[:user_id] = user.id 
             redirect_to invasive_species_path
         else 

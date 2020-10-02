@@ -5,7 +5,6 @@ class Post < ApplicationRecord
     belongs_to :user
 
     validates :description, :location_latitude, :location_longitude, :user_id, :invasive_species_id, presence: true
-    validates :common_name, uniqueness: true
 
     # accepts_nested_attributes_for :invasive_species
 

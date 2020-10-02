@@ -16,15 +16,13 @@ invasive_species = InvasiveSpecies.create([
 ])
 
 posts = Post.create([
-    {species_name: 'Norway Maple', description: 'Found these in the forest in my local state park.  ~50 feet tall, wet soil, year-round', location_latitude: '41.0819° N', location_longitude: '-073.5829° E', photo: 'no photo available', invasive_species_id: 1, user_id: 3}, 
+    {description: 'Found these in the forest in my local state park.  ~50 feet tall, wet soil, year-round', location_latitude: '41.0819° N', location_longitude: '-073.5829° E', photo: 'no photo available', invasive_species_id: 1, user_id: 3}, 
 
-    {species_name: 'Mugwort', description: 'Growing all throughout the park and the road leading up to the park.  Wet, dry, sun, shade.', location_latitude: '33.7179° N', location_longitude: '-116.3431° E', photo: 'no photo available', invasive_species_id: 2, user_id: 3}, 
+    {description: 'Growing all throughout the park and the road leading up to the park.  Wet, dry, sun, shade.', location_latitude: '33.7179° N', location_longitude: '-116.3431° E', photo: 'no photo available', user_id: 3}, 
 
-    {species_name: 'Mugwort', description: 'Found throughout my property and neighborhood', location_latitude: '41.1954° N', location_longitude: '-073.4379° E', photo: 'no photo available', invasive_species_id: 2, user_id: 1}
+    {description: 'Found throughout my property and neighborhood', location_latitude: '41.1954° N', location_longitude: '-073.4379° E', photo: 'no photo available', user_id: 1}
 ])
 
-    # , :environment_id => [[3],[4],[9]
-    # , :environment_id => [[2],[4],[8]
 
 environments = Environment.create([
     {name: "wet"}, 
