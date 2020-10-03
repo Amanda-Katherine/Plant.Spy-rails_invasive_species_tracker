@@ -1,5 +1,4 @@
-<%= form_with(model: @post, url: post_form_url_helper(@invasive_species)) do |f| %>
-        <% binding.pry %>
+<%= form_for(@post) do |f| %>
         <%= f.label "Create new post" %>
         <%= f.fields_for :invasive_species do |i| %>
             <% if !@invasive_species %>
@@ -8,7 +7,6 @@
             <% else %>
                 <%= i.label " for: "%>
                 <%= i.label(:common_name, "#{@invasive_species.common_name}") %>
-                <%= i.hidden_field :common_name %>
             <% end %>
         <% end %><br>
     

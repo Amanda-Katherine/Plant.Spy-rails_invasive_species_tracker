@@ -6,8 +6,6 @@ class User < ApplicationRecord
     validates :email, presence: true, on: 'sessions#login_via_omniauth'
     validates :username, uniqueness: true, on: :create
     validates :email, uniqueness: true, on: 'sessions#login_via_omniauth'
-
-
     
     has_secure_password
 end

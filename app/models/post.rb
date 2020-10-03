@@ -6,18 +6,10 @@ class Post < ApplicationRecord
 
     validates :description, :location_latitude, :location_longitude, :user_id, :invasive_species_id, presence: true
 
-    # accepts_nested_attributes_for :invasive_species
-
-    #insert custom nested form for invasive species? 
     def invasive_species_attributes=(inv_spec_atts)
+        binding.pry
         inv_spec = InvasiveSpecies.find_or_create_by(common_name: inv_spec_atts[:common_name])
 
-        if inv_spec[:id].present?
-            self.invasive_species = inv_spec
-        else 
-            self.build_invasive_species(common_name: inv_spec_atts[:common_name, description: self.description])
-        end
+        self.invasive_species = inv_spec
     end
-
-    #insert custom nestest attribute for environment to find Environment.all options. 
 end

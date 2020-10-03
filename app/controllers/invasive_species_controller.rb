@@ -1,6 +1,6 @@
 class InvasiveSpeciesController < ApplicationController
     before_action :require_login
-    
+
     def index
         @all_species = InvasiveSpecies.all
     end
@@ -10,7 +10,6 @@ class InvasiveSpeciesController < ApplicationController
     end
 
     def create
-        binding.pry
         if new_species = InvasiveSpecies.find_by(common_name: species_params[:common_name])
             flash[:failure] = "That species already exists. Please feel free to add a post to it about what you found!"
             redirect_to invasive_specy_path(new_species)
@@ -29,24 +28,30 @@ class InvasiveSpeciesController < ApplicationController
         @posts = @invasive_species.posts
     end
 
-    # def edit
-    # end
+    def edit
+       if current_user.admin
+            @invasive_species = InvasiveSpecies.find_by(id: params[:id])
+        else 
+            flash[:failure] = "Only administrators can edit this species. Please make a post for potential edits. Please start your post with *Requested Edit.*"
+            redirect_to invasive_specy_path(@invasive_species)
+        end
+    end
 
     def update
-        # @invasive_species = InvasiveSpecies.find_by(id: #determine params)
+        binding.pry
+        @invasive_species = InvasiveSpecies.find_by(id: params[:id])
 
-        if #authenticate current_user is an admin
-            @invasive_species.update(species_params)
+        if @invasive_species.update(species_params)
+            redirect_to invasive_specy_path(@invasive_species)
         else
-            #error message about invalid credentials
-            #add in functionality to suggest an edit for users? 
-            #redirect to invasive species page
+            flash[:failure] = "Edits not saved. Did you leave the species name blank?"
+            render :edit
         end
     end
 
     def destroy
-        #allow if admin only
-        # @invasive_species = InvasiveSpecies.find_by(id: #params id)
+        redirect_if_not_admin
+        @invasive_species = InvasiveSpecies.find_by(id: params[:id])
         @invasive_species.destroy
     end
 

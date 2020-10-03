@@ -30,6 +30,9 @@ class PostsController < ApplicationController
         #take out instance variables? See errors on line 42
         #is Post.new okay since I'm calling .save below?
         @post = Post.new(post_params)
+        binding.pry
+        @post.invasive_species_id = params[:invasive_specy_id]
+
         @post.user = current_user
         if @post.invasive_species[:description] == nil
             @post.invasive_species[:description] = @post.description
