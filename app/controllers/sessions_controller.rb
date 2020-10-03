@@ -13,10 +13,10 @@ class SessionsController < ApplicationController
     end
 
     def login_via_account
-        binding.pry
         @user = User.find_by(username: params[:user][:username])
+        
         if @user && @user.authenticate(params[:user][:password])
-            session[:user_id] = @user.id #check params
+            session[:user_id] = @user.id 
             redirect_to user_path(@user)
         else
             @errors = ["Username or password incorrect"]

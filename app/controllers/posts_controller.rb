@@ -42,10 +42,16 @@ class PostsController < ApplicationController
 
     def edit
         @post = Post.find_by(id: params[:id])
+        binding.pry
     end
 
     def update
         @post = Post.find_by(id: params[:id])
+        
+        if !@post.invasive_species.description
+            @post.invasive_species.description = @post.description
+            @post.invasive_species.save
+        end
 
         if @post.update(post_params)
             redirect_to invasive_specy_path(@post.invasive_species)
