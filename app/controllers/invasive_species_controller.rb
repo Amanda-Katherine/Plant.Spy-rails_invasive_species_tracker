@@ -2,7 +2,11 @@ class InvasiveSpeciesController < ApplicationController
     before_action :require_login
 
     def index
-        @all_species = InvasiveSpecies.all
+        if params[:search]
+            @all_species = InvasiveSpecies.name_includes(params[:search])
+        else
+            @all_species = InvasiveSpecies.all
+        end
     end
     
     def new
