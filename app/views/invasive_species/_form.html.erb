@@ -1,5 +1,5 @@
     
-<%= form_with(method: @invasive_species, url: invasive_species_path) do |f| %>
+<%= form_with(model: @invasive_species, url: invasive_species_path) do |f| %>
     <%= f.label :common_name %>
     <%= f.text_field :common_name %><br>
 

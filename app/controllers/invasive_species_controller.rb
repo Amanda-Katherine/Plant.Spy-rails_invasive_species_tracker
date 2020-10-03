@@ -14,6 +14,7 @@ class InvasiveSpeciesController < ApplicationController
     end
 
     def create
+        binding.pry
         if new_species = InvasiveSpecies.find_by(common_name: species_params[:common_name])
             flash[:failure] = "That species already exists. Please feel free to add a post to it about what you found!"
             redirect_to invasive_specy_path(new_species)
