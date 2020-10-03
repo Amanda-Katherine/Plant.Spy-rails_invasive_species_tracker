@@ -29,9 +29,8 @@ class InvasiveSpeciesController < ApplicationController
     end
 
     def edit
-       if current_user.admin
-            @invasive_species = InvasiveSpecies.find_by(id: params[:id])
-        else 
+        @invasive_species = InvasiveSpecies.find_by(id: params[:id])
+        if !current_user.admin
             flash[:failure] = "Only administrators can edit this species. Please make a post for potential edits. Please start your post with *Requested Edit.*"
             redirect_to invasive_specy_path(@invasive_species)
         end
