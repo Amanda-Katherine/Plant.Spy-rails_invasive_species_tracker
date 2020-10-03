@@ -4,5 +4,5 @@ class InvasiveSpecies < ApplicationRecord
 
     validates :common_name, presence: true, uniqueness: true
 
-    
+    scope :name_includes, -> (search) {where()}
 end
