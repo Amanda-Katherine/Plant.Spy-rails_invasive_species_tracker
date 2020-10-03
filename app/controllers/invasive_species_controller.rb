@@ -38,7 +38,6 @@ class InvasiveSpeciesController < ApplicationController
     end
 
     def update
-        binding.pry
         @invasive_species = InvasiveSpecies.find_by(id: params[:id])
 
         if @invasive_species.update(species_params)
