@@ -2,18 +2,7 @@ class PostsController < ApplicationController
     before_action :require_login
 
     def index
-        if params[:invasive_specy_id]
-            inv_species = InvasiveSpecies.find_by(id: params[:invasive_specy_id])
-            @posts = inv_species.posts
-            if @posts != []
-                @posts
-            else
-                #insert error about no posts created yet
-                redirect_to invasive_specy_path(inv_species)
-            end
-        else 
-            @posts = Post.all
-        end
+        @posts = Post.all
     end
 
     def new
@@ -27,18 +16,18 @@ class PostsController < ApplicationController
     end
 
     def create
-        #take out instance variables? See errors on line 42
-        #is Post.new okay since I'm calling .save below?
         @post = Post.new(post_params)
-        binding.pry
-        @post.invasive_species_id = params[:invasive_specy_id]
-
+        
         @post.user = current_user
-        if @post.invasive_species[:description] == nil
-            @post.invasive_species[:description] = @post.description
-            @post.invasive_species.save
+        
+        if !@post.invasive_species
+             @post.invasive_species = InvasiveSpecies.find_by(common_name: params[:post][:common_name])
         end
         
+        if !@post.invasive_species.description
+            @post.invasive_species.description = @post.description
+            @post.invasive_species.save
+        end
         if @post.save
             redirect_to invasive_specy_path(@post.invasive_species)
         else

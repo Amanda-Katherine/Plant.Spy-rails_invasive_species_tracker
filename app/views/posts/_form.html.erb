@@ -1,15 +1,16 @@
 <%= form_for(@post) do |f| %>
-        <%= f.label "Create new post" %>
+    <%= f.label "Create new post" %>
+    <% if !@invasive_species %>
         <%= f.fields_for :invasive_species do |i| %>
-            <% if !@invasive_species %>
-                <br><%= i.label :common_name %>
-                <%= i.text_field :common_name %>
-            <% else %>
-                <%= i.label " for: "%>
-                <%= i.label(:common_name, "#{@invasive_species.common_name}") %>
-            <% end %>
-        <% end %><br>
-    
+            <br><%= i.label :common_name %>
+            <%= i.text_field :common_name %>
+        <% end %>
+    <% else %>
+        <%= f.label " for: "%>
+        <%= f.label(:common_name, "#{@invasive_species.common_name}") %>
+        <%= f.hidden_field :common_name, value: @invasive_species.common_name %>
+    <% end %><br>
+        
     <%= f.label :description %>
     <%= f.text_area :description %><br>
 

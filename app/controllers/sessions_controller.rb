@@ -13,7 +13,8 @@ class SessionsController < ApplicationController
     end
 
     def login_via_account
-        @user = User.create_or_find_by(username: params[:user][:username])
+        binding.pry
+        @user = User.find_by(username: params[:user][:username])
         if @user && @user.authenticate(params[:user][:password])
             session[:user_id] = @user.id #check params
             redirect_to user_path(@user)

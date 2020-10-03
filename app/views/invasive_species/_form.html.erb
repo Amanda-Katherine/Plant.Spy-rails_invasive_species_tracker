@@ -1,4 +1,5 @@
-<%= form_for(@invasive_species) do |f| %>
+    
+<%= form_with(method: @invasive_species, url: invasive_species_path) do |f| %>
     <%= f.label :common_name %>
     <%= f.text_field :common_name %><br>
 
@@ -8,4 +9,3 @@
     <%= f.submit %>
 <% end %>
     
-# how to add an option to create a new post as well? 
