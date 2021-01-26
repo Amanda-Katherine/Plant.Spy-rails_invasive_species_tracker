@@ -1,5 +1,3 @@
-![Plant.Spy](./assets/images/cover_photo.png)
-
 # Plant.Spy
 
 Plant.Spy is a Ruby on Rails app that is used to helps aspiring and professional botanists to track invasive plant species. 
