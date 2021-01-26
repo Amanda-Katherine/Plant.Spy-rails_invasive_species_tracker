@@ -1,4 +1,4 @@
-![connecTarot](https://user-images.githubusercontent.com/65590878/96668650-83687e80-1310-11eb-9d4c-fa2300d0ce52.png)
+![Plant.Spy](./assets/images/cover_photo.png)
 
 # Plant.Spy
 
