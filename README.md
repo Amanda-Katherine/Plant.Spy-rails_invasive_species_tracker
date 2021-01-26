@@ -41,7 +41,7 @@ This project is intended to be a safe, welcoming space for collaboration, and co
 
 ## Authors
 
-* **Amanda Walker Brubaker** - - [Amanda Walker Brubaker](https://github.com/Amanda-Katherine)
+* **Amanda Walker Brubaker** - [Amanda Walker Brubaker](https://github.com/Amanda-Katherine)
 
 
 ## License
